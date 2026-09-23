@@ -1,0 +1,19 @@
+# Node
+node_modules/
+
+# Build output
+function.zip
+
+# Terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+crash.*.log
+
+# Local env / editor
+.env
+.DS_Store

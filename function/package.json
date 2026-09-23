@@ -1,0 +1,11 @@
+{
+  "name": "eventgrid-triggered-functionapp",
+  "version": "1.0.0",
+  "description": "An Event Grid triggered Azure Function that records the events it receives into PostgreSQL",
+  "main": "src/functions/*.js",
+  "dependencies": {
+    "@azure/functions": "^4.5.0",
+    "@azure/identity": "^4.5.0",
+    "pg": "^8.13.0"
+  }
+}
