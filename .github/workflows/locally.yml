@@ -41,6 +41,10 @@ jobs:
         with:
           node-version: ${{ steps.node.outputs.version }}
 
+      # Locally hosts the function with the Azure Functions Core Tools.
+      - name: Install the Azure Functions Core Tools
+        run: npm install --global azure-functions-core-tools@4
+
       - name: Install the function dependencies
         working-directory: function
         run: npm install
