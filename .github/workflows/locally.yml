@@ -29,9 +29,17 @@ jobs:
         with:
           terraform_wrapper: false
 
+      # Locally runs the function with this Node.js, so it has to match the
+      # Function App's node_version.
+      - name: Find the Function App's Node.js version
+        id: node
+        run: |
+          version=$(grep -rhoE 'node_version\s*=\s*"[0-9]+"' --include='*.tf' modules | grep -oE '[0-9]+' | head -n1)
+          echo "version=${version:?no node_version found in modules}" >> "$GITHUB_OUTPUT"
+
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: lts/*
+          node-version: ${{ steps.node.outputs.version }}
 
       - name: Install the function dependencies
         working-directory: function
