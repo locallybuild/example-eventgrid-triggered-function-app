@@ -1,0 +1,35 @@
+version: 2
+updates:
+  # Terraform providers
+  - package-ecosystem: "terraform"
+    directories:
+      - "/environments/locally"
+      - "/modules/eventgrid-triggered-functionapp"
+    schedule:
+      interval: "weekly"
+    groups:
+      terraform:
+        patterns:
+          - "*"
+
+  # Node.js dependencies
+  - package-ecosystem: "npm"
+    directories:
+      - "/function"
+    schedule:
+      interval: "weekly"
+    groups:
+      npm:
+        patterns:
+          - "*"
+
+  # GitHub Actions used by the CI
+  - package-ecosystem: "github-actions"
+    directories:
+      - "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
