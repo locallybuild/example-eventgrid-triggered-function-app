@@ -66,6 +66,13 @@ jobs:
           terraform init -input=false
           locally run terraform apply -auto-approve -input=false
 
+      - name: Show why the deployment failed
+        if: failure() && steps.apply0.outcome == 'failure'
+        run: |
+          locally logs --json |
+            jq -r '.[] | select(.uri | test("/api/deployments/")) | .responseBody // empty | fromjson? | .status_text // empty' |
+            sort -u
+
       - name: Destroy environments/locally
         # Only once there's something to destroy.
         if: always() && steps.apply0.outcome != 'skipped'
