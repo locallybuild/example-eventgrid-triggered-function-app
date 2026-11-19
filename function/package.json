@@ -4,8 +4,8 @@
   "description": "An Event Grid triggered Azure Function that records the events it receives into PostgreSQL",
   "main": "src/functions/*.js",
   "dependencies": {
-    "@azure/functions": "^4.5.0",
-    "@azure/identity": "^4.5.0",
-    "pg": "^8.13.0"
+    "@azure/functions": "^4.17.1",
+    "@azure/identity": "^4.14.1",
+    "pg": "^8.23.1"
   }
 }

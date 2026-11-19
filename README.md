@@ -19,7 +19,7 @@ This example shows how to deploy an Event Grid triggered Function App - which re
 * [Locally Build](https://locally.build).
 * Either [HashiCorp Terraform](https://terraform.io) or [OpenTofu](https://opentofu.org).
 * Either [Docker](https://www.docker.com) or [Podman](https://podman.io) (recommended).
-* [Node.js](https://nodejs.org) 20+, to install the function's dependencies.
+* [Node.js](https://nodejs.org) 24, to install the function's dependencies. Locally runs the function with the Node.js on your machine, so its major version needs to match the Function App's `node_version`.
 * The Locally Plugin for `Microsoft.DBforPostgreSQL` installed (`locally plugin install --name Microsoft.DBforPostgreSQL`).
 * The Locally Plugin for `Microsoft.EventGrid` installed (`locally plugin install --name Microsoft.EventGrid`).
 * The Locally Plugin for `Microsoft.Storage` installed (`locally plugin install --name Microsoft.Storage`).

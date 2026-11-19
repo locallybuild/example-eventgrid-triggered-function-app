@@ -27,7 +27,7 @@ resource "azurerm_postgresql_flexible_server" "functionapp" {
   resource_group_name = azurerm_resource_group.functionapp.name
   location            = azurerm_resource_group.functionapp.location
 
-  version    = "16"
+  version    = "18"
   sku_name   = var.postgres_sku_name
   storage_mb = 32768
 
