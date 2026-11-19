@@ -41,15 +41,22 @@ jobs:
         with:
           node-version: ${{ steps.node.outputs.version }}
 
-      # Locally hosts the function with the Azure Functions Core Tools.
+      # Locally hosts the function with the Azure Functions Core Tools. The
+      # npm package's `func` is a Node.js wrapper (lib/main.js) around the real
+      # binary in bin/, and Locally looks for the language workers next to
+      # whichever `func` is on PATH - so put bin/ (where workers/ lives) first.
       - name: Install the Azure Functions Core Tools
-        run: npm install --global azure-functions-core-tools@4
+        run: |
+          npm install --global azure-functions-core-tools@4
+          bin="$(npm root --global)/azure-functions-core-tools/bin"
+          test -x "$bin/func" && test -d "$bin/workers"
+          echo "$bin" >> "$GITHUB_PATH"
 
       - name: Install the function dependencies
         working-directory: function
         run: npm install
 
-      - uses: locallybuild/setup-locally@v1
+      - uses: locallybuild/setup-locally@dc4fb46b46af5deded2a7e8ce1b6da7c337240f0 # v1.2.0
         with:
           team-uuid: ${{ vars.LOCALLY_TEAM_UUID }}
           plugins: custom
@@ -79,5 +86,5 @@ jobs:
         working-directory: environments/locally
         run: locally run terraform destroy -auto-approve -input=false
 
-      - uses: locallybuild/setup-locally/teardown@v1
+      - uses: locallybuild/setup-locally/teardown@dc4fb46b46af5deded2a7e8ce1b6da7c337240f0 # v1.2.0
         if: always()
