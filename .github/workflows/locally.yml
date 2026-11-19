@@ -54,7 +54,7 @@ jobs:
 
       - name: Install the function dependencies
         working-directory: function
-        run: npm install
+        run: npm ci
 
       - uses: locallybuild/setup-locally@dc4fb46b46af5deded2a7e8ce1b6da7c337240f0 # v1.2.0
         with:
