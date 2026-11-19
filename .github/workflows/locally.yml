@@ -54,7 +54,7 @@ jobs:
 
       - name: Install the function dependencies
         working-directory: function
-        run: npm install
+        run: npm ci
 
       # The runner has both Docker and Podman, and Locally can switch from one to
       # the other partway through a run - after which the containers it starts
